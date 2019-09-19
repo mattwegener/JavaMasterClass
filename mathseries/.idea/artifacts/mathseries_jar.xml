@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="mathseries:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/mathseries_jar</output-path>
+    <root id="archive" name="mathseries.jar">
+      <element id="module-output" name="mathseries" />
+    </root>
+  </artifact>
+</component>
