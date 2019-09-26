@@ -7,103 +7,36 @@ import java.util.*;
  * Created by timbuchalka on 2/04/2016.
  */
 public class Locations implements Map<Integer, Location> {
-    private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
+    private static Map<Integer, Location> locations = new LinkedHashMap<>();
 
     public static void main(String[] args) throws IOException {
-        try (FileWriter locFile = new FileWriter("locations.txt");
-             FileWriter dirFile = new FileWriter("directions.txt")) {
-            for (Location location : locations.values()) {
-                locFile.write(location.getLocationID() + "," + location.getDescription() + "\n");
-                for (String dir : location.getExits().keySet()) {
-                    dirFile.write(location.getLocationID() + "," + dir + "," + location.getExits().get(dir) + "\n");
-                }
+        try(ObjectOutputStream locFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("location.dat")))){
+            for(Location location: locations.values()){
+                locFile.writeObject(location);
             }
         }
-
-//        FileWriter locFile = null;
-//        try {
-//            locFile = new FileWriter("locations.txt");
-//            for (Location location : locations.values()) {
-//                locFile.write(location.getLocationID() + "," + location.getDescription() + "\n");
-//            }
-//        } finally {
-//            if (locFile != null) {
-//                System.out.println("Closing locFile");
-//                locFile.close();
-//            }
-//        }
     }
 
     static {
-        Scanner scanner = null;
-        try{
-            scanner = new Scanner(new FileReader("locations.txt"));
-            scanner.useDelimiter(",");
-            while(scanner.hasNextLine()){
-                int loc = scanner.nextInt();
-                scanner.skip(scanner.delimiter());
-                String description = scanner.nextLine();
-                Map<String,Integer> tempExit = new HashMap<>();
-                locations.put(loc, new Location(loc,description,tempExit));
+        try(ObjectInputStream locFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream("location.dat")))) {
+            boolean eof = false;
+            while (!eof) {
+                try {
+                    Location location = (Location) locFile.readObject();
+                    System.out.println("Read Loc " + location.getLocationID() + " : " + location.getDescription());
+                    System.out.println("Found " + location.getExits().size() + " exits");
+                    locations.put(location.getLocationID(), location);
+                } catch (EOFException e) {
+                    eof = true;
+                }
             }
-        } catch (IOException e){
-            e.printStackTrace();
-        }finally {
-            if(scanner != null){
-                scanner.close();
-            }
+        }catch (InvalidClassException e){
+            System.out.println("InvalidClassException" + e.getMessage());
+        } catch (IOException io){
+            System.out.println("IO Exception " + io.getMessage());
+        } catch (ClassNotFoundException e){
+            System.out.println("ClassNotFoundException " + e.getMessage());
         }
-
-        try{
-            scanner = new Scanner(new BufferedReader(new FileReader("directions.txt")));
-            scanner.useDelimiter(",");
-            while(scanner.hasNextLine()){
-                int loc = scanner.nextInt();
-                scanner.skip(scanner.delimiter());
-                String direction = scanner.nextLine();
-                scanner.skip(scanner.delimiter());
-                String dest = scanner.nextLine();
-                int destination = Integer.parseInt(dest);
-                System.out.println();
-                Location location = locations.get(loc);
-                location.addExit(direction,destination);
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }finally {
-            if(scanner != null){
-                scanner.close();
-            }
-        }
-
-//        Map<String, Integer> tempExit = new HashMap<String, Integer>();
-//        locations.put(0, new Location(0, "You are sitting in front of a computer learning Java",null));
-//
-//        tempExit = new HashMap<String, Integer>();
-//        tempExit.put("W", 2);
-//        tempExit.put("E", 3);
-//        tempExit.put("S", 4);
-//        tempExit.put("N", 5);
-//        locations.put(1, new Location(1, "You are standing at the end of a road before a small brick building",tempExit));
-//
-//        tempExit = new HashMap<String, Integer>();
-//        tempExit.put("N", 5);
-//        locations.put(2, new Location(2, "You are at the top of a hill",tempExit));
-//
-//        tempExit = new HashMap<String, Integer>();
-//        tempExit.put("W", 1);
-//        locations.put(3, new Location(3, "You are inside a building, a well house for a small spring",tempExit));
-//
-//        tempExit = new HashMap<String, Integer>();
-//        tempExit.put("N", 1);
-//        tempExit.put("W", 2);
-//        locations.put(4, new Location(4, "You are in a valley beside a stream",tempExit));
-//
-//        tempExit = new HashMap<String, Integer>();
-//        tempExit.put("S", 1);
-//        tempExit.put("W", 2);
-//        locations.put(5, new Location(5, "You are in the forest",tempExit));
-//
     }
 
     @Override
