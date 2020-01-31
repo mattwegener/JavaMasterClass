@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2ada5fd-8817-41c4-90a9-ebf0aa4b024f" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,23 +18,17 @@
     </option>
   </component>
   <component name="ProjectId" id="1QfQGLnGrsT1dMZrufBmeGwEvQF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -55,10 +48,26 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="238" key="FileChooserDialogImpl" timestamp="1580171477295">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="238" key="FileChooserDialogImpl/-1920.-9.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1580171477295" />
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1580171414269">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog/-1920.-9.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1580171414269" />
+    <state x="342" y="223" key="new project wizard" timestamp="1580171500555">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="223" key="new project wizard/-1920.-9.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1580171500555" />
   </component>
 </project>
